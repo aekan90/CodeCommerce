@@ -14,7 +14,7 @@ namespace Business.Concrete
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal ProductDal) // IProductDal dan türeyen bir concrete Class gelmeli
+        public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
         }
@@ -22,7 +22,7 @@ namespace Business.Concrete
         public List<Product> GetAll()
         {
             // İş Kodları
-            return _productDal.GetAll(); // ör: EfProductDal.GetAll() yada InMemoryProductDal.GetAll döner.
+            return _productDal.GetAll(); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
 
 
         }
