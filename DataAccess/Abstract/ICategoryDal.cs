@@ -1,4 +1,6 @@
-﻿using Entities.Concrete;
+﻿using Entities.Abstract;
+using Entities.Concrete;
+using System.Globalization;
 
 namespace DataAccess.Abstract
 {

@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
@@ -6,11 +7,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        ProductManager pm = new ProductManager(new EfProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal());
 
-        List<Product> productList = pm.GetAll();
-
-        foreach (var item in pm.GetAll())
+        foreach (var item in productManager.GetAll())
         {
             Console.WriteLine(item.ProductName);
         }
