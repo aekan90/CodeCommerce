@@ -9,7 +9,7 @@ internal class Program
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var item in productManager.GetAll())
+        foreach (var item in productManager.GetByUnitPrice(10, 20)) // DIP : üstclass ref= new altclass(); ref.sadeceüstclassta ve alt classda olan metotlar gelir.(Bağımlılıkların tersine çevrilmesi)
         {
             Console.WriteLine(item.ProductName);
         }

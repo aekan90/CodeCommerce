@@ -1,5 +1,4 @@
 ﻿using DataAccess.Abstract;
-using Entities.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -16,6 +15,10 @@ namespace DataAccess.Concrete.EntityFramework
                 addedEntity.State = EntityState.Added; // bu referans eklenecek bir nesnedir
                 context.SaveChanges(); //  değişikliği uygula
             }
+        }
+        public void DIPtest(string txt)
+        {
+            Console.WriteLine(txt);
         }
 
         public void Delete(Product entity)
