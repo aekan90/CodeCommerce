@@ -1,7 +1,6 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess;
 using Entities.Concrete;
 using System.Linq.Expressions;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DataAccess.Concrete.InMemory
 {

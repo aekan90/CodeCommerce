@@ -1,7 +1,7 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System.Linq.Expressions;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     // generic constraint
     // class : referans tip olabilir Değer Tipleri engeller (Değer tip :int, short, long | Referans Tip : string, object)
@@ -9,7 +9,7 @@ namespace DataAccess.Abstract
     // IEntity : IEntity olabilir yada IEntity implemente eden nesne olabilir
     // new : soyut sınıf(IEntity) de gelmesin 
 
-    public interface IEntityRepository<T> where T : class ,IEntity, new()
+    public interface IEntityRepository<T> where T : class, IEntity, new()
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
