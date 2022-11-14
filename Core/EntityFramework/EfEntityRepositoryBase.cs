@@ -24,10 +24,6 @@ namespace Core.EntityFramework
                 context.SaveChanges(); //  değişikliği uygula
             }
         }
-        public void DIPtest(string txt)
-        {
-            Console.WriteLine(txt);
-        }
 
         public void Delete(TEntity entity)
         {

@@ -11,7 +11,6 @@ namespace DataAccess.Abstract
         //void Delete(Product p);
 
         // ürüne ait özel kodlar burada yazılacak o yüzden generic yapmayacağız.
-        void Add1(Product p);
-
+        
     }
 }

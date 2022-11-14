@@ -38,5 +38,13 @@ namespace Business.Concrete
             // SELECT * FROM PRODUCTS WHERE UnitPrice>10 and UnitPrice<20 
             return _productDal.GetAll(P => P.UnitPrice > min && P.UnitPrice < max);
         }
+
+        public List<Product> GetTest()
+        {
+            // İş Kodları
+            return _productDal.GetAll(); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
+            // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
+            // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
+        }
     }
 }
