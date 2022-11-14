@@ -12,11 +12,19 @@ internal class Program
         //    Console.WriteLine(item.ProductName);
         //}
 
-        OrderManager orderManager = new OrderManager(new EfOrderDal());
+        //OrderManager orderManager = new OrderManager(new EfOrderDal());
 
-        foreach (var item in orderManager.GetAll())
+        //foreach (var item in orderManager.GetAll())
+        //{
+        //    Console.WriteLine(item.OrderID + " " + item.CustomerId);
+        //}
+
+
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+
+        foreach (var item in categoryManager.GetById(2))
         {
-            Console.WriteLine(item.OrderID + " " + item.CustomerId);
+            Console.WriteLine(item.CategoryName);
         }
 
     }

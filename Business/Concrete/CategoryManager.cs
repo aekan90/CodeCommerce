@@ -12,14 +12,20 @@ namespace Business.Concrete
     public class CategoryManager : ICategoryService
     {
         ICategoryDal categoryDal;
-        public List<Category> GetAll()
+
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            throw new NotImplementedException();
+            this.categoryDal = categoryDal;
         }
 
-        public List<Category> GetAllByCustomerId(int id)
+        public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return categoryDal.GetAll();
+        }
+
+        public List<Category> GetById(int id)
+        {
+            return categoryDal.GetAll(p => p.CategoryId == id);
         }
     }
 }
