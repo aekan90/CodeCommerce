@@ -8,6 +8,9 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
-
+        public void Add1(Product p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
