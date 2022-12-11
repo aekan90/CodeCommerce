@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,11 +15,19 @@ namespace Business.Concrete
             _productDal = ProductDal;
         }
 
+        public IResult Add(Product product)
+        {
+            // Ürün ekle iş kodları
+            _productDal.Add(product);
+            return new Result(true, "Ürün Eklendi");
+        }
+
         public List<Product> GetAll()
         {
             // İş Kodları
             return _productDal.GetAll(); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
-            // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
+            // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın (DIP)
+            // Dependency Injection Prenciple | Bağımlılıkların tersine çevrilmesi
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
 
@@ -26,6 +35,11 @@ namespace Business.Concrete
         {
             // SELECT * FROM PRODUCTS WHERE CATEGORYID=2
             return _productDal.GetAll(p => p.CategoryId == id);
+        }
+
+        public Product GetById(int productId)
+        {
+            return _productDal.Get(p => p.ProductId == productId);
         }
 
         public List<Product> GetByUnitPrice(decimal min, decimal max)

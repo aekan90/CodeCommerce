@@ -1,6 +1,7 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
 using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
@@ -8,6 +9,7 @@ namespace DataAccess.Abstract
     {
         //List<Product> GetAll();
         //void Add(Product p);
+        //T Get(Expression<Func<T, bool>> filter);
         //void Update(Product p);
         //void Delete(Product p);
 

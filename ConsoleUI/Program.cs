@@ -1,11 +1,16 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        _ProductManagerTest();
+
+        _ProductManagerAddTest();
+        //_ProductManagerTest();
+        _ProductManagerGetProductTest();
         Console.WriteLine("-----------------------------------");
         //_OrderManagerTest();
         Console.WriteLine("-----------------------------------");
@@ -36,7 +41,23 @@ internal class Program
         }
     }
 
+    private static void _ProductManagerGetProductTest()
+    {
+        ProductManager productManager = new ProductManager(new EfProductDal());
+        Console.WriteLine(productManager.GetById(3).ProductName);
+    }
 
+
+    private static void _ProductManagerAddTest()
+    {
+        ProductManager productManager = new ProductManager(new EfProductDal());
+
+        Product p = new Product();
+        p.ProductName = "Karışık Kebap";
+        p.CategoryId = 5;
+        IResult _result = productManager.Add(p);
+        Console.WriteLine(_result.Message);
+    }
 
     private static void _CategoryManagerTest()
     {
@@ -47,9 +68,11 @@ internal class Program
             Console.WriteLine(item.CategoryName);
         }
     }
-
-    //1 2 3 4 5 6 7 8 9 0
-    //Q W E R T Y U I O P Ğ Ü 
-    //A S D F G H J K L Ş İ 
-    //Z X C V B N M Ö Ç  
 }
+
+
+
+//1 2 3 4 5 6 7 8 9 0
+//Q W E R T Y U I O P Ğ Ü 
+//A S D F G H J K L Ş İ 
+//Z X C V B N M Ö Ç  
