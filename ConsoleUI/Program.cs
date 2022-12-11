@@ -5,11 +5,14 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //_ProductManagerTest();
+        _ProductManagerTest();
         Console.WriteLine("-----------------------------------");
         //_OrderManagerTest();
         Console.WriteLine("-----------------------------------");
         //_CategoryManagerTest();
+
+
+
     }
 
     private static void _OrderManagerTest()
@@ -27,11 +30,13 @@ internal class Program
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var item in productManager.GetByUnitPrice(10, 20)) // DIP : üstclass ref= new altclass(); ref.sadeceüstclassta ve alt classda olan metotlar gelir.(Bağımlılıkların tersine çevrilmesi)
+        foreach (var item in productManager.GetProductDetail()) // DIP : üstclass ref= new altclass(); ref.sadeceüstclassta ve alt classda olan metotlar gelir.(Bağımlılıkların tersine çevrilmesi)
         {
-            Console.WriteLine(item.ProductName);
+            Console.WriteLine(item.ProductId + " | " + item.ProductName + " | " + item.CategoryName);
         }
     }
+
+
 
     private static void _CategoryManagerTest()
     {
@@ -42,4 +47,9 @@ internal class Program
             Console.WriteLine(item.CategoryName);
         }
     }
+
+    //1 2 3 4 5 6 7 8 9 0
+    //Q W E R T Y U I O P Ğ Ü 
+    //A S D F G H J K L Ş İ 
+    //Z X C V B N M Ö Ç  
 }

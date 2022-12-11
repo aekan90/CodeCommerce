@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Abstract
 {
@@ -11,6 +12,6 @@ namespace DataAccess.Abstract
         //void Delete(Product p);
 
         // ürüne ait özel kodlar burada yazılacak o yüzden generic yapmayacağız.
-        
+        List<ProductDetailDto> GetProductDetail();
     }
 }

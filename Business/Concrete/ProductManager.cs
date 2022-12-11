@@ -1,12 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -39,6 +34,11 @@ namespace Business.Concrete
             return _productDal.GetAll(P => P.UnitPrice > min && P.UnitPrice < max);
         }
 
+        public List<ProductDetailDto> GetProductDetail()
+        {
+            return _productDal.GetProductDetail();
+        }
+
         public List<Product> GetTest()
         {
             // İş Kodları
@@ -46,5 +46,6 @@ namespace Business.Concrete
             // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
+
     }
 }
