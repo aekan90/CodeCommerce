@@ -2,10 +2,15 @@
 {
     public class Result : IResult
     {
-        public Result(bool success, string message)
+        public Result(bool success, string message) : this(success)
+        {
+            //Success = success;
+            Message = message;
+        }
+        
+        public Result(bool success)
         {
             Success = success;
-            Message = message;
         }
 
         public bool Success { get; }
