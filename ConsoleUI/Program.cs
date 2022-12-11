@@ -32,7 +32,7 @@ internal class Program
 
         foreach (var item in productManager.GetProductDetail()) // DIP : üstclass ref= new altclass(); ref.sadeceüstclassta ve alt classda olan metotlar gelir.(Bağımlılıkların tersine çevrilmesi)
         {
-            Console.WriteLine(item.ProductId + " | " + item.ProductName + " | " + item.CategoryName);
+            Console.WriteLine(item.ProductName + " | " + item.CategoryName);
         }
     }
 

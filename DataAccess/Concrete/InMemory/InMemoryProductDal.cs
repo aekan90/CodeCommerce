@@ -1,10 +1,12 @@
 ﻿using Core.DataAccess;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryProductDal : IEntityRepository<Product>
+    public class InMemoryProductDal : IProductDal
     {
         List<Product> _products;
         public InMemoryProductDal()
@@ -52,6 +54,11 @@ namespace DataAccess.Concrete.InMemory
             List<Product> pList = new List<Product>();
             pList = _products.Where(P => P.CategoryId == categoryId).ToList();
             return pList;
+        }
+
+        public List<ProductDetailDto> GetProductDetail()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Product product)
