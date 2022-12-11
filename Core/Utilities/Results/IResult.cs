@@ -3,7 +3,7 @@
     // Temel voidler için başlangıç
     public interface IResult
     {
-        bool Success { get; }
+        bool Status { get; }
         string Message { get; }
     }
 }

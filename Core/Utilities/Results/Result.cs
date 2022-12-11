@@ -2,18 +2,18 @@
 {
     public class Result : IResult
     {
-        public Result(bool success, string message) : this(success)
+        public Result(bool status, string message) : this(status)
         {
-            //Success = success;
+            //Status = status;
             Message = message;
         }
         
-        public Result(bool success)
+        public Result(bool status)
         {
-            Success = success;
+            Status = status;
         }
 
-        public bool Success { get; }
+        public bool Status { get; }
         public string Message { get; }
     }
 }

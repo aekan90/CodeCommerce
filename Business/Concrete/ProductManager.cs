@@ -19,7 +19,7 @@ namespace Business.Concrete
         {
             // Ürün ekle iş kodları
             _productDal.Add(product);
-            return new Result(true, "Ürün Eklendi");
+            return new SuccessResult("Ürün Eklendi");
         }
 
         public List<Product> GetAll()
