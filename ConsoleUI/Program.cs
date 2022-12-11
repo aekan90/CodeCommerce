@@ -53,7 +53,7 @@ internal class Program
         ProductManager productManager = new ProductManager(new EfProductDal());
 
         Product p = new Product();
-        p.ProductName = "Karışık Kebap";
+        p.ProductName = "ayran";
         p.CategoryId = 5;
         IResult _result = productManager.Add(p);
         Console.WriteLine(_result.Message);
