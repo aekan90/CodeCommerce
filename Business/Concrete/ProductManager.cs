@@ -5,6 +5,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using System.Collections.Generic;
 
 namespace Business.Concrete
 {
@@ -29,39 +30,43 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            // İş Kodları
-            return new DataResult<List<Product>>(_productDal.GetAll(),true,Messages.ProductGet); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
+            if (DateTime.Now.Hour == 3)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
+            //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
             // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın (DIP)
             // Dependency Injection Prenciple | Bağımlılıkların tersine çevrilmesi
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
 
-        public List<Product> GetAllByCategoryId(int id)
+        public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
             // SELECT * FROM PRODUCTS WHERE CATEGORYID=2
-            return _productDal.GetAll(p => p.CategoryId == id);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id), Messages.ProductsListed);
         }
 
-        public Product GetById(int productId)
+        public IDataResult<Product> GetById(int productId)
         {
-            return _productDal.Get(p => p.ProductId == productId);
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId), Messages.ProductsListed);
         }
 
-        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
             // SELECT * FROM PRODUCTS WHERE UnitPrice>10 and UnitPrice<20 
-            return _productDal.GetAll(P => P.UnitPrice > min && P.UnitPrice < max);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(P => P.UnitPrice > min && P.UnitPrice < max), Messages.ProductsListed);
         }
 
-        public List<ProductDetailDto> GetProductDetail()
+        public IDataResult<List<ProductDetailDto>> GetProductDetail()
         {
-            return _productDal.GetProductDetail();
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetail(), Messages.ProductsListed);
         }
 
-        public List<Product> GetTest()
+        public IDataResult<List<Product>> GetTest()
         {
             // İş Kodları
-            return _productDal.GetAll(); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
             // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
