@@ -2,10 +2,8 @@
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
-using System.Collections.Generic;
 
 namespace Business.Concrete
 {
@@ -30,12 +28,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
-            //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
-            // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın (DIP)
-            // Dependency Injection Prenciple | Bağımlılıkların tersine çevrilmesi
-            // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
