@@ -5,6 +5,6 @@ namespace Core.Utilities.Results
     {
         // bool Status { get; }
         //  string Message { get; }
-        T Data { get; }
+        public T Data { get; }
     }
 }

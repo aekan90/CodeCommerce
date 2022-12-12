@@ -30,10 +30,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 3)
-            {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            }
+            
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
             //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
             // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın (DIP)
@@ -60,6 +57,10 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailDto>> GetProductDetail()
         {
+            if (DateTime.Now.Hour == 4)
+            {
+                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime); // Data null gitti???
+            }
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetail(), Messages.ProductsListed);
         }
 

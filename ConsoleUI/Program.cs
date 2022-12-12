@@ -9,12 +9,14 @@ internal class Program
     {
 
         _ProductManagerAddTest();
-        //_ProductManagerTest();
+        Console.WriteLine("------------------??-----------------");
+        _ProductManagerTest();
+        Console.WriteLine("-----------------------------------");
         _ProductManagerGetProductTest();
+        Console.WriteLine("-------------------------------------");
+        _OrderManagerTest();
         Console.WriteLine("-----------------------------------");
-        //_OrderManagerTest();
-        Console.WriteLine("-----------------------------------");
-        //_CategoryManagerTest();
+        _CategoryManagerTest();
 
 
 
@@ -35,16 +37,25 @@ internal class Program
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var item in productManager.GetProductDetail()) // DIP : üstclass ref= new altclass(); ref.sadeceüstclassta ve alt classda olan metotlar gelir.(Bağımlılıkların tersine çevrilmesi)
+        var result = productManager.GetProductDetail();
+        if (result.Status == true)
         {
-            Console.WriteLine(item.ProductName + " | " + item.CategoryName);
+            foreach (var item in productManager.GetProductDetail().Data)
+            {
+                Console.WriteLine(item.ProductName + " | " + item.CategoryName);
+            }
         }
+        else
+        {
+            Console.WriteLine(result.Message);
+        }
+
     }
 
     private static void _ProductManagerGetProductTest()
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
-        Console.WriteLine(productManager.GetById(3).ProductName);
+        Console.WriteLine(productManager.GetById(3).Data.ProductName);
     }
 
 
