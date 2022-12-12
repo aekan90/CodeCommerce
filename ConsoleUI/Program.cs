@@ -17,9 +17,6 @@ internal class Program
         _OrderManagerTest();
         Console.WriteLine("-----------------------------------");
         _CategoryManagerTest();
-
-
-
     }
 
     private static void _OrderManagerTest()
@@ -30,7 +27,6 @@ internal class Program
         {
             Console.WriteLine(item.OrderID + " " + item.CustomerId);
         }
-
     }
 
     private static void _ProductManagerTest()
@@ -49,7 +45,6 @@ internal class Program
         {
             Console.WriteLine(result.Message);
         }
-
     }
 
     private static void _ProductManagerGetProductTest()
@@ -57,7 +52,6 @@ internal class Program
         ProductManager productManager = new ProductManager(new EfProductDal());
         Console.WriteLine(productManager.GetById(3).Data.ProductName);
     }
-
 
     private static void _ProductManagerAddTest()
     {
