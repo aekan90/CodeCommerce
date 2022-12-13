@@ -8,15 +8,15 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        _ProductManagerAddTest();
+        //_ProductManagerAddTest();
         Console.WriteLine("------------------??-----------------");
-        _ProductManagerTest();
+        //_ProductManagerTest();
         Console.WriteLine("-----------------------------------");
-        _ProductManagerGetProductTest();
+        //_ProductManagerGetProductTest();
         Console.WriteLine("-------------------------------------");
-        _OrderManagerTest();
+        //_OrderManagerTest();
         Console.WriteLine("-----------------------------------");
-        _CategoryManagerTest();
+        //_CategoryManagerTest();
     }
 
     private static void _OrderManagerTest()

@@ -9,6 +9,12 @@ namespace Core.EntityFramework
          where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
+        //TContext _context;  Program.cs yok ki singelton tanımlayayım?
+
+        //public EfEntityRepositoryBase(TContext context)
+        //{
+        //    _context = context;
+        //}
 
         public void Add(TEntity entity)
         {

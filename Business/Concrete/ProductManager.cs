@@ -10,7 +10,7 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
-       
+
         public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
@@ -23,12 +23,18 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ProductNameInvalid);
             }
             _productDal.Add(product);
-            return new SuccessResult("Ürün Eklendi :" + product.ProductName);
+            return new SuccessResult("Ürün Eklendi : " + product.ProductName);
+        }
+
+        public IResult Delete(Product product)
+        {
+            _productDal.Delete(product);
+            return new SuccessResult("Ürün Silindi : " + product.ProductName);
         }
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 12)
+            if (DateTime.Now.Hour == 22)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -72,6 +78,8 @@ namespace Business.Concrete
             // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
+
+
 
     }
 }
