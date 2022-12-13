@@ -10,7 +10,7 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
-
+       
         public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
@@ -28,7 +28,15 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
+            if (DateTime.Now.Hour == 12)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            }
+            else
+            {
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
+            }
+
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)

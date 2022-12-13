@@ -1,6 +1,4 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,14 +8,19 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        IProductService _productService;
 
+        public ProductsController(IProductService productService)
+        {
+           _productService = productService;
+        }
 
+        //IProductService productService = new ProductManager(new EfProductDal());
 
         [HttpGet]
         public List<Product> GetAllProducts()
         {
-            IProductService productService = new ProductManager(new EfProductDal());
-            var result = productService.GetAll();
+            var result = _productService.GetAll();
             return result.Data;
         }
     }
