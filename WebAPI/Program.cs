@@ -1,3 +1,4 @@
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
@@ -8,7 +9,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        var serviceProvider = new AutofacServiceProvider(container);
         // Add services to the container.
 
         builder.Services.AddControllers();
@@ -18,8 +19,9 @@ internal class Program
 
         // Autofact, Ninject, CastleWindsor, StructureMap, LightInject, DryInject
         // AOP 
-        builder.Services.AddSingleton<IProductService, ProductManager>();
-        builder.Services.AddSingleton<IProductDal, EfProductDal>();
+        // interface : referans tutucudur.
+        //builder.Services.AddSingleton<IProductService, ProductManager>();
+        //builder.Services.AddSingleton<IProductDal, EfProductDal>();
 
         var app = builder.Build();
 
