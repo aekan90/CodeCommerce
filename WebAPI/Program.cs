@@ -1,6 +1,8 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolves.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
@@ -9,7 +11,16 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var serviceProvider = new AutofacServiceProvider(container);
+        // var serviceProvider = new AutofacServiceProvider(container);
+
+        #region Set-up Autofac
+        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.RegisterModule(new AutofacBusinessModule());
+    });
+        #endregion
+
         // Add services to the container.
 
         builder.Services.AddControllers();
