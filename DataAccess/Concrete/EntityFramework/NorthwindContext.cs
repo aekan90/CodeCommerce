@@ -11,11 +11,13 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #region Set ConnectionString
-#if (DEBUG)
+#if (Nvi)
             optionsBuilder.UseSqlServer(@"Server=.;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
-#elif (HOME)
+#elif (Home)
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
-#else
+#elif (Relase)
+            // relase : canlıya alırsan canlı db bilgilerin için burası
+#else 
             // relase : canlıya alırsan canlı db bilgilerin için burası
 #endif
             #endregion
