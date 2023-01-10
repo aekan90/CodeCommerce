@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    // Context : Db taboları ile Projemiz Entitylerini bağlar
+    // Context (bağlam) : Db taboları ile  Entityleri birbirine bağlar
     public class NorthwindContext : DbContext
     {
         // Burası projemiz hangi DB ile ilişkili beliritoyruz? 
