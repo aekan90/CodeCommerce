@@ -18,9 +18,9 @@ namespace DataAccess.Concrete.EntityFramework
 #elif (Relase)
             // relase : canlıya alırsan canlı db bilgilerin için burası
 #else 
-            // relase : canlıya alırsan canlı db bilgilerin için burası
+            // ...
 #endif
-            #endregion
+            #endregion 
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
