@@ -6,7 +6,7 @@ namespace DataAccess.Concrete.EntityFramework
     // Context (bağlam) : Db taboları ile  Entityleri birbirine bağlar
     public class NorthwindContext : DbContext
     {
-        // Burası projemiz hangi DB ile ilişkili beliritoyruz? 
+        // Burası projemiz hangi DB ile ilişkili belirtiyoruz?  
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,9 +18,9 @@ namespace DataAccess.Concrete.EntityFramework
 #elif (Relase)
             // relase : canlıya alırsan canlı db bilgilerin için burası
 #else 
-            // relase : canlıya alırsan canlı db bilgilerin için burası
+            // ...
 #endif
-            #endregion
+            #endregion 
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
