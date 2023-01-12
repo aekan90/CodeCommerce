@@ -21,9 +21,9 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-           
+            // loglama kodları çalışacak
             ValidationTool.Validate(new ProductValidator(), product);
-
+            // business codes
             _productDal.Add(product);
             return new SuccessResult("Ürün Eklendi : " + product.ProductName);
         }
