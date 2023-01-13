@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects;
 using Core.CrossCuttingConcerns.Validations;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,10 +20,11 @@ namespace Business.Concrete
             _productDal = ProductDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // loglama kodları çalışacak
-            ValidationTool.Validate(new ProductValidator(), product);
+            //ValidationTool.Validate(new ProductValidator(), product);
             // business codes
             _productDal.Add(product);
             return new SuccessResult("Ürün Eklendi : " + product.ProductName);

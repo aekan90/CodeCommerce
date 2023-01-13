@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class ProductValidator : AbstractValidator<Product>
+    public class ProductValidator : AbstractValidator<Product> // : IValidator
     {
         public ProductValidator()  // DTO ve Entitiler için validasyon yapılandırıcı içinde yazılır. 
         {
