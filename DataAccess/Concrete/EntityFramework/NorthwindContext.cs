@@ -10,13 +10,12 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
             #region Set ConnectionString
-#if (Debug)
+#if (DEBUG)
             optionsBuilder.UseSqlServer(@"Server=.;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
-#elif (Home)
+#elif (HOME)
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
-#elif (Relase)
+#elif (RELEASE)
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
 #endif
             #endregion 
@@ -24,6 +23,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; } 
+        public DbSet<Order> Orders { get; set; }
     }
 }
