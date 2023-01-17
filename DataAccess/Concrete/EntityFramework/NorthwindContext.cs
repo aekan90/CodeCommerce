@@ -15,10 +15,12 @@ namespace DataAccess.Concrete.EntityFramework
             optionsBuilder.UseSqlServer(@"Server=.;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
 #elif (HOME)
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
+#elif (ODTU)
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
 #elif (RELEASE)
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-BDSU88V;Database=Northwind;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
 #endif
-            #endregion 
+            #endregion
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
