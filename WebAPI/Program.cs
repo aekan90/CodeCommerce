@@ -10,7 +10,7 @@ internal class Program
         // var serviceProvider = new AutofacServiceProvider(container);
 
         #region Set-up Autofac
-        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()) 
     .ConfigureContainer<ContainerBuilder>(builder =>
     {
         builder.RegisterModule(new AutofacBusinessModule());
