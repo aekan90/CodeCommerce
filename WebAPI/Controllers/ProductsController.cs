@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
 
         //IProductService productService = new ProductManager(new EfProductDal());
 
-        [HttpGet("getall")]
+        [HttpGet("getall")]  
         public IActionResult GetAll()
         {
             var result = _productService.GetAll();
