@@ -8,7 +8,7 @@ namespace Core.Aspects
     public class ValidationAspect : MethodInterception
     {
         private Type _validatorType;
-        public ValidationAspect(Type validatorType) 
+        public ValidationAspect(Type validatorType) // ör. ProductValidator
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
