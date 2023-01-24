@@ -21,7 +21,8 @@ namespace Core.EntityFramework
             using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity); // referansı yakala
-                addedEntity.State = EntityState.Added; // bu referans eklenecek bir nesnedir
+                addedEntity.State = EntityState.Added; // bu referans
+                                                       // necek bir nesnedir
                 context.SaveChanges(); //  değişikliği uygula
             }
         }

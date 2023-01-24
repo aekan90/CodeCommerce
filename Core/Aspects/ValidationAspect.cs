@@ -17,7 +17,9 @@ namespace Core.Aspects
 
             _validatorType = validatorType;
         }
-        protected override void OnBefore(IInvocation invocation)
+        // - Neden sadece OnBefore override edildi?
+        // - Validation(Doğrulama) metodun başında yapılır :)
+        protected override void OnBefore(IInvocation invocation) 
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
