@@ -1,7 +1,6 @@
 ﻿using Business.Abstract;
+using Business.CCC;
 using Business.Constants;
-using Business.ValidationRules.FluentValidation;
-using Core.Aspects;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -12,13 +11,15 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ILogger _logger;
 
-        public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
+        public ProductManager(IProductDal ProductDal, ILogger logger) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
+            _logger = logger;   
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+        //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // loglama kodları çalışacak

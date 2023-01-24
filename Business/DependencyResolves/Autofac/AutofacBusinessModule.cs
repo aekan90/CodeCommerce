@@ -14,6 +14,7 @@ namespace Business.DependencyResolves.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            // AUTOFAC İLE NESNE ÜRETEN YER BURASI
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             if (true) // // EfProductDal, InMemoryDal : IProductDal
             {
@@ -21,7 +22,7 @@ namespace Business.DependencyResolves.Autofac
             }
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-            // validation aspecti çalıştıran yer burası
+            // FLUENT VALIDATION İLE AOP (ASPECT VALIDATION) YAPILAN YER DE BURASI
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()
                 {
