@@ -16,17 +16,24 @@ namespace Business.Concrete
         public ProductManager(IProductDal ProductDal, ILogger logger) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
-            _logger = logger;   
+            _logger = logger;
         }
 
         //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            // loglama kodları çalışacak
+            try
+            {
+                _productDal.Add(product);
+                return new SuccessResult("Ürün Eklendi : " + product.ProductName);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(ex.ToString());
+                throw;
+            }
             // ValidationTool.Validate(new ProductValidator(), product);
             // business codes
-            _productDal.Add(product);
-            return new SuccessResult("Ürün Eklendi : " + product.ProductName);
         }
 
         public IResult Delete(Product product)

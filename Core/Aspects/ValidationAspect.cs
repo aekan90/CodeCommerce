@@ -9,7 +9,7 @@ namespace Core.Aspects
     {
         private Type _validatorType;
         public ValidationAspect(Type validatorType) // ör. ProductValidator
-        {
+        {       // Defensive Coding
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("Bu Bir Doğrulama Sınıfı Değil");

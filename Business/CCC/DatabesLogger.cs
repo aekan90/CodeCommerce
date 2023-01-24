@@ -6,5 +6,10 @@
         {
             Console.WriteLine("Veritabanına Loglandı");
         }
+
+        public void Log(string ex)
+        {
+            Console.WriteLine("Databese Loglandı : " + ex);
+        }
     }
 }

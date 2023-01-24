@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.CCC;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
@@ -20,6 +21,8 @@ namespace Business.DependencyResolves.Autofac
             {
                 builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
             }
+            builder.RegisterType<FileLogger>().As<ILogger>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             // FLUENT VALIDATION İLE AOP (ASPECT VALIDATION) YAPILAN YER DE BURASI
