@@ -21,8 +21,6 @@ namespace Business.DependencyResolves.Autofac
             {
                 builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
             }
-            builder.RegisterType<FileLogger>().As<ILogger>().SingleInstance();
-
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             // FLUENT VALIDATION İLE AOP (ASPECT VALIDATION) YAPILAN YER DE BURASI

@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace Core.Aspects
 {
-    public class ValidationAspect : MethodInterception
+    public class ValidationAspect : MethodInterception // is a Attribute
     {
         private Type _validatorType;
         public ValidationAspect(Type validatorType) // ör. ProductValidator
