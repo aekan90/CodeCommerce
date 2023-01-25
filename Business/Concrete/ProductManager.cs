@@ -24,12 +24,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            // Bir kategoride en fazla 10 ürün olabilir.
-            var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count();
-            if (result >= 10)
-            {
-                return new ErrorResult(Messages.ProductCountOfCategoryError);
-            }
+
             _productDal.Add(product);
 
             return new SuccessResult("Ürün Eklendi : " + product.ProductName);
@@ -90,7 +85,16 @@ namespace Business.Concrete
             // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
         }
 
-
-
+        [ValidationAspect(typeof(ValidationAspect))]
+        public IResult Update(Product product)
+        {
+            // Bir kategoride en fazla 10 ürün olabilir.
+            var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count();
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
+            throw new NotImplementedException();
+        }
     }
 }
