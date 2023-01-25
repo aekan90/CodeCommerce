@@ -2,12 +2,13 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
-        int a = 2;
+
         public List<ProductDetailDto> GetProductDetail()
         {
             using (NorthwindContext context = new NorthwindContext())

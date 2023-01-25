@@ -18,13 +18,20 @@ namespace Business.Concrete
         public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
-            
+
         }
 
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
+            // Bir kategoride en fazla 10 ürün olabilir.
+            var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count();
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
             _productDal.Add(product);
+
             return new SuccessResult("Ürün Eklendi : " + product.ProductName);
             // ValidationTool.Validate(new ProductValidator(), product);
             // business codes
