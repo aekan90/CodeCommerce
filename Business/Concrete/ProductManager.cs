@@ -18,18 +18,24 @@ namespace Business.Concrete
         public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
-
         }
 
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
+            if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
+            {
+                if (AyniIsimdeUrunVarsaEklenemez(product.ProductName).Status)
+                {
+                    _productDal.Add(product);
+                    return new SuccessResult("Ürün Eklendi : " + product.ProductName);
+                }
+            }
+            return new ErrorResult(Messages.ProductCountOfCategoryError);
 
-            _productDal.Add(product);
 
-            return new SuccessResult("Ürün Eklendi : " + product.ProductName);
             // ValidationTool.Validate(new ProductValidator(), product);
-            // business codes
+            // AND SPAGETTİ business codes
         }
 
         public IResult Delete(Product product)
@@ -88,13 +94,36 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ValidationAspect))]
         public IResult Update(Product product)
         {
-            // Bir kategoride en fazla 10 ürün olabilir.
-            var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count();
+            if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult(Messages.ProductCountOfCategoryError);
+        }
+
+        #region İŞ KURALLARI | BUSİNESS 
+        private IResult KategoridekiUrunSayisiniSinirla(int CategoryId)
+        {
+            // Bir kategoride en fazla 10 ürün olabilir kuralımız
+            // Select count(*) from products where categoryId=1
+            var result = _productDal.GetAll(p => p.CategoryId == CategoryId).Count();
             if (result >= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
-            throw new NotImplementedException();
+            return new SuccessResult();
         }
+
+        private IResult AyniIsimdeUrunVarsaEklenemez(string productName)
+        {
+            var result = _productDal.GetAll(p => p.ProductName == productName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
+        #endregion
     }
 }
