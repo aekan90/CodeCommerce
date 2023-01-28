@@ -32,10 +32,6 @@ namespace Business.Concrete
                 }
             }
             return new ErrorResult(Messages.ProductCountOfCategoryError);
-
-
-            // ValidationTool.Validate(new ProductValidator(), product);
-            // AND SPAGETTİ business codes
         }
 
         public IResult Delete(Product product)
@@ -54,7 +50,6 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
             }
-
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
@@ -83,14 +78,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetail(), Messages.ProductsListed);
         }
 
-        public IDataResult<List<Product>> GetTest()
-        {
-            // İş Kodları
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed); //  EfProductDal.GetAll() yada InMemoryProductDal.GetAll 
-            // _productDal.xyz --> IProductDalda olmayan ama EfProductDalda olan bir metodu burada çağıramazsın DIP
-            // _productDal.DIPtest("DIP test"); çalışmaz çünkü IProductDal da böyle bir metot yok
-        }
-
         [ValidationAspect(typeof(ValidationAspect))]
         public IResult Update(Product product)
         {
@@ -101,6 +88,10 @@ namespace Business.Concrete
             return new ErrorResult(Messages.ProductCountOfCategoryError);
         }
 
+
+
+
+
         #region İŞ KURALLARI | BUSİNESS 
         private IResult KategoridekiUrunSayisiniSinirla(int CategoryId)
         {
@@ -110,7 +101,7 @@ namespace Business.Concrete
             if (result >= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
-            }
+            }  
             return new SuccessResult();
         }
 
