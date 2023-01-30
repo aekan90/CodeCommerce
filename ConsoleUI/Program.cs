@@ -31,7 +31,7 @@ internal class Program
 
     private static void _ProductManagerTest()
     {
-        ProductManager productManager = new ProductManager(new EfProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
         var result = productManager.GetProductDetail();
         if (result.Status == true)
@@ -49,13 +49,13 @@ internal class Program
 
     private static void _ProductManagerGetProductTest()
     {
-        ProductManager productManager = new ProductManager(new EfProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
         Console.WriteLine(productManager.GetById(3).Data.ProductName);
     }
 
     private static void _ProductManagerAddTest()
     {
-        ProductManager productManager = new ProductManager(new EfProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
         Product p = new Product();
         p.ProductName = "ayran";
@@ -68,7 +68,7 @@ internal class Program
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-        foreach (var item in categoryManager.GetAll())
+        foreach (var item in categoryManager.GetAll().Data)
         {
             Console.WriteLine(item.CategoryName);
         }

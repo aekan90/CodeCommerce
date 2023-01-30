@@ -21,6 +21,10 @@ namespace Business.DependencyResolves.Autofac
             {
                 builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
             }
+
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             // FLUENT VALIDATION İLE AOP (ASPECT VALIDATION) YAPILAN YER DE BURASI

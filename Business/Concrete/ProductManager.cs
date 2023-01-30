@@ -14,11 +14,13 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ICategoryService _categoryService;
         ILogger _logger;
 
-        public ProductManager(IProductDal ProductDal) // EfProductDal, InMemoryDal : IProductDal
+        public ProductManager(IProductDal ProductDal, ICategoryService categoryService) // EfProductDal, InMemoryDal : IProductDal
         {
             _productDal = ProductDal;
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator))]
@@ -27,10 +29,11 @@ namespace Business.Concrete
             IResult result = BusinessRules.Run
                 (
                 KategoridekiUrunSayisiniSinirla(product.ProductId),
-                AyniIsimdeUrunVarsaEklenemez(product.ProductName)
+                AyniIsimdeUrunVarsaEklenemez(product.ProductName),
+                KategoriSayisiLimitKontrol()
+                // + ,Mevcut kategory sayısı 15 i geçtiyse yeni ürün eklenemez.
                 // + ,yeni kural
-                // + ,yeni kural
-                );
+                ); ;
 
             if (result != null)
             {
@@ -38,16 +41,6 @@ namespace Business.Concrete
             }
             _productDal.Add(product);
             return new SuccessResult("Ürün Eklendi : " + product.ProductName);
-
-            //if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
-            //{
-            //    if (AyniIsimdeUrunVarsaEklenemez(product.ProductName).Status)
-            //    {
-            //        _productDal.Add(product);
-            //        return new SuccessResult("Ürün Eklendi : " + product.ProductName);
-            //    }
-            //}
-            //return new ErrorResult(Messages.ProductCountOfCategoryError);
         }
 
         public IResult Delete(Product product)
@@ -128,6 +121,17 @@ namespace Business.Concrete
             if (result)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
+
+        private IResult KategoriSayisiLimitKontrol()
+        {
+            var result = _categoryService.GetAll();
+            if (result.Data.Count > 15)
+            {
+                return new ErrorResult(Messages.CategoryCountOfCategoryError);
             }
             return new SuccessResult();
         }
