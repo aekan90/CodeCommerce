@@ -3,6 +3,7 @@ using Business.CCC;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,15 +24,30 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
+            IResult result = BusinessRules.Run
+                (
+                KategoridekiUrunSayisiniSinirla(product.ProductId),
+                AyniIsimdeUrunVarsaEklenemez(product.ProductName)
+                // + yeni kural
+                // + yeni kural
+                );
+
+            if (result != null)
             {
-                if (AyniIsimdeUrunVarsaEklenemez(product.ProductName).Status)
-                {
-                    _productDal.Add(product);
-                    return new SuccessResult("Ürün Eklendi : " + product.ProductName);
-                }
+                return result;
             }
-            return new ErrorResult(Messages.ProductCountOfCategoryError);
+            _productDal.Add(product);
+
+
+            //if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
+            //{
+            //    if (AyniIsimdeUrunVarsaEklenemez(product.ProductName).Status)
+            //    {
+            //        _productDal.Add(product);
+            //        return new SuccessResult("Ürün Eklendi : " + product.ProductName);
+            //    }
+            //}
+            //return new ErrorResult(Messages.ProductCountOfCategoryError);
         }
 
         public IResult Delete(Product product)
@@ -92,6 +108,7 @@ namespace Business.Concrete
 
 
 
+
         #region İŞ KURALLARI | BUSİNESS 
         private IResult KategoridekiUrunSayisiniSinirla(int CategoryId)
         {
@@ -101,10 +118,10 @@ namespace Business.Concrete
             if (result >= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
-            }  
+            }
             return new SuccessResult();
         }
-         
+
         private IResult AyniIsimdeUrunVarsaEklenemez(string productName)
         {
             var result = _productDal.GetAll(p => p.ProductName == productName).Any();
