@@ -28,8 +28,8 @@ namespace Business.Concrete
                 (
                 KategoridekiUrunSayisiniSinirla(product.ProductId),
                 AyniIsimdeUrunVarsaEklenemez(product.ProductName)
-                // + yeni kural
-                // + yeni kural
+                // + ,yeni kural
+                // + ,yeni kural
                 );
 
             if (result != null)
@@ -37,7 +37,7 @@ namespace Business.Concrete
                 return result;
             }
             _productDal.Add(product);
-
+            return new SuccessResult("Ürün Eklendi : " + product.ProductName);
 
             //if (KategoridekiUrunSayisiniSinirla(product.CategoryId).Status)
             //{
