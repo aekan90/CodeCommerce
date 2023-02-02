@@ -18,7 +18,11 @@ namespace Business.Concrete
         public IDataResult<List<Category>> GetAll()
         {
             // iş kodları
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
+            List<Category> listem = new List<Category>();
+            listem = _categoryDal.GetAll();
+            return new SuccessDataResult<List<Category>>(listem);
+
+            //return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
         }
 
         public IDataResult<Category> GetById(int id)
