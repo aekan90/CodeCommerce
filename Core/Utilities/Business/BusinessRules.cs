@@ -22,7 +22,7 @@ namespace Core.Utilities.Business
         //    List<IResult> errorResult = new List<IResult>();
         //    foreach (var isKuraliMetodu in isKuraliMetodları)
         //    {
-        //        if (!isKuraliMetodu.Status)
+        //        if (!isKuraliMetodu.Status) 
         //        {
         //            errorResult.Add(isKuraliMetodu);
         //        }
