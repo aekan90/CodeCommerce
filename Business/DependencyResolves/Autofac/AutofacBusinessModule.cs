@@ -19,7 +19,7 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             if (true) // // EfProductDal, InMemoryDal : IProductDal
             {
-                builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+                builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance(); 
             }
 
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
