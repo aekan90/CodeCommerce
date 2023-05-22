@@ -2,6 +2,6 @@
 {
     public interface ILogger
     {
-        void Log(string ex);
+        void Log(string exception);
     }
 }

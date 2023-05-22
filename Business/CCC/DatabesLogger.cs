@@ -7,9 +7,9 @@
             Console.WriteLine("Veritabanına Loglandı");
         }
 
-        public void Log(string ex)
+        public void Log(string exception)
         {
-            Console.WriteLine("Databese Loglandı : " + ex);
+            Console.WriteLine("Databese Loglandı : " + exception);
         }
     }
 }
