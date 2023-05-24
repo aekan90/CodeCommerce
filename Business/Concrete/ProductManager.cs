@@ -117,7 +117,7 @@ namespace Business.Concrete
 
         private IResult AyniIsimdeUrunVarsaEklenemez(string productName)
         {
-            var result = _productDal.GetAll(p => p.ProductName == productName).Any();
+            var result = _productDal.GetAll(p => p.ProductName == productName).Any(); 
             if (result)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
