@@ -2,7 +2,7 @@
 
 Bu proje, modern yazılım geliştirme tekniklerini ve kurumsal yazılım mimarilerini uygulayan bir örnek projedir. Proje, C# programlama dili ve Entity Framework kullanılarak geliştirilmiştir.
 
-## Proje Özellikleri
+## Proje Özellikleri  
 
 - **N-Tier Mimari:** Proje, çok katmanlı bir mimari yapıya sahiptir.
 - **Entity Framework:** Veritabanı işlemleri için Entity Framework kullanılmıştır.
