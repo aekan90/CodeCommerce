@@ -1,4 +1,4 @@
-# CodeCommerce
+# CodeCommerce  
 
 Bu proje, modern yazılım geliştirme tekniklerini ve kurumsal yazılım mimarilerini uygulayan bir örnek projedir. Proje, C# programlama dili ve Entity Framework kullanılarak geliştirilmiştir.
 
