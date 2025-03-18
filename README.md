@@ -1,4 +1,4 @@
-# MyFinalProject
+# CodeCommerce
 
 Bu proje, modern yazılım geliştirme tekniklerini ve kurumsal yazılım mimarilerini uygulayan bir örnek projedir. Proje, C# programlama dili ve Entity Framework kullanılarak geliştirilmiştir.
 
@@ -21,6 +21,10 @@ Bu proje, modern yazılım geliştirme tekniklerini ve kurumsal yazılım mimari
 1. .NET Core SDK'yı yükleyin.
 2. Proje dizininde `dotnet restore` komutunu çalıştırarak bağımlılıkları yükleyin.
 3. `dotnet run --project WebAPI/WebAPI.csproj` komutunu kullanarak projeyi çalıştırın.
+
+### Notlar
+
+- Proje çalıştırıldığında tarayıcı otomatik olarak açılmıyorsa, `launchSettings.json` dosyasında `launchBrowser` ayarının `true` olduğundan emin olun.
 
 ## Katkıda Bulunanlar
 
