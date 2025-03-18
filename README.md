@@ -1,15 +1,27 @@
-# EnginDemirog.MyFinalProject
+# MyFinalProject
 
-Yazılım Geliştirici Yetiştirme Kampı 
+Bu proje, modern yazılım geliştirme tekniklerini ve kurumsal yazılım mimarilerini uygulayan bir örnek projedir. Proje, C# programlama dili ve Entity Framework kullanılarak geliştirilmiştir.
 
-7. Günden 16. Güne kadar izleyip uyguladım
+## Proje Özellikleri
 
+- **N-Tier Mimari:** Proje, çok katmanlı bir mimari yapıya sahiptir.
+- **Entity Framework:** Veritabanı işlemleri için Entity Framework kullanılmıştır.
+- **Web API:** Proje, RESTful API hizmeti sunmaktadır.
+- **Konsol Uygulaması:** Proje, konsol tabanlı bir kullanıcı arayüzü içermektedir.
 
-Yazılım Geliştirici Yetiştirme Kampı 7. Gün C#
-https://www.youtube.com/watch?v=qBQOqh844Mo&list=PLqG356ExoxZVN7rC0KmMo0lvECK97VRZg&index=11
+## Kullanılan Teknolojiler
 
-Yazılım Geliştirici Yetiştirme Kampı 8. Gün C# Entity Framework
-https://www.youtube.com/watch?v=ow-EHetuNAU&list=PLqG356ExoxZVN7rC0KmMo0lvECK97VRZg&index=8
+- C#
+- .NET Core
+- Entity Framework
+- RESTful API
 
-Yazılım Geliştirici Yetiştirme Kampı 9. Gün C# Kurumsal Yazılım Mimarileri
-https://www.youtube.com/watch?v=Hgqqoycoh9c&list=PLqG356ExoxZVN7rC0KmMo0lvECK97VRZg&index=9
+## Kurulum
+
+1. .NET Core SDK'yı yükleyin.
+2. Proje dizininde `dotnet restore` komutunu çalıştırarak bağımlılıkları yükleyin.
+3. `dotnet run --project WebAPI/WebAPI.csproj` komutunu kullanarak projeyi çalıştırın.
+
+## Katkıda Bulunanlar
+
+Bu proje, yazılım geliştirme becerilerini geliştirmek amacıyla oluşturulmuştur.
